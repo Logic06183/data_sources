@@ -25,8 +25,8 @@ suppressPackageStartupMessages({
 setwd("C:/Users/CraigParker/OneDrive - Wits PHR/Desktop/HVI_Johannesburg")
 
 # Create output directory if it doesn't exist
-if (!dir.exists("outputs")) {
-  dir.create("outputs")
+if (!dir.exists("data_sources/outputs")) {
+  dir.create("data_sources/outputs")
 }
 
 # Test basic plot saving to diagnose any device issues
@@ -36,8 +36,8 @@ test_plot <- ggplot(mtcars, aes(mpg, wt)) +
   labs(title = "Test Plot")
 
 # Save using ggsave (more reliable)
-ggsave("outputs/test_plot.pdf", test_plot, width = 8, height = 6)
-ggsave("outputs/test_plot.png", test_plot, width = 8, height = 6, dpi = 100)
+ggsave("data_sources/outputs/test_plot.pdf", test_plot, width = 8, height = 6)
+ggsave("data_sources/outputs/test_plot.png", test_plot, width = 8, height = 6, dpi = 100)
 cat("Test plots saved. If these open, ggsave is working correctly.\n\n")
 
 # Read spatial data
@@ -193,7 +193,7 @@ label_colors_ordered <- group_colors[variable_info_ordered$group]
 cat("Creating correlation plot...\n")
 
 # Save as PDF using the direct approach with corrplot
-pdf("outputs/correlation_matrix.pdf", width = 12, height = 10)
+pdf("data_sources/outputs/correlation_matrix.pdf", width = 12, height = 10)
 cat("PDF device opened...\n")
 corrplot(corr_matrix_ordered,
          method = "color",
@@ -212,7 +212,7 @@ dev.off()
 cat("PDF device closed...\n")
 
 # Save as PNG
-png("outputs/correlation_matrix.png", width = 1200, height = 1000, res = 100)
+png("data_sources/outputs/correlation_matrix.png", width = 1200, height = 1000, res = 100)
 cat("PNG device opened...\n")
 corrplot(corr_matrix_ordered,
          method = "color",
@@ -230,7 +230,7 @@ cat("Plot drawn to PNG...\n")
 dev.off()
 cat("PNG device closed...\n")
 
-cat("Correlation plot saved to 'outputs/correlation_matrix.pdf' and 'outputs/correlation_matrix.png'\n")
+cat("Correlation plot saved to 'data_sources/outputs/correlation_matrix.pdf' and 'data_sources/outputs/correlation_matrix.png'\n")
 
 # Perform PCA
 cat("Performing PCA...\n")
@@ -255,10 +255,10 @@ pca_loadings_plot <- fviz_pca_var(pca_result,
   labs(title = "PCA Variable Loadings Grouped by Category")
 
 # Save PCA plot using ggsave
-ggsave("outputs/pca_loadings.pdf", pca_loadings_plot, width = 10, height = 8)
-ggsave("outputs/pca_loadings.png", pca_loadings_plot, width = 10, height = 8, dpi = 100)
+ggsave("data_sources/outputs/pca_loadings.pdf", pca_loadings_plot, width = 10, height = 8)
+ggsave("data_sources/outputs/pca_loadings.png", pca_loadings_plot, width = 10, height = 8, dpi = 100)
 
-cat("PCA loadings plot saved to 'outputs/pca_loadings.pdf' and 'outputs/pca_loadings.png'\n")
+cat("PCA loadings plot saved to 'data_sources/outputs/pca_loadings.pdf' and 'data_sources/outputs/pca_loadings.png'\n")
 
 # Extract the first principal component for HVI
 cat("Calculating Heat Vulnerability Index...\n")
@@ -276,10 +276,10 @@ hvi_map <- ggplot(gwpca_data) +
   labs(title = "Heat Vulnerability Index", fill = "HVI")
 
 # Save HVI map using ggsave
-ggsave("outputs/hvi_map.pdf", hvi_map, width = 10, height = 8)
-ggsave("outputs/hvi_map.png", hvi_map, width = 10, height = 8, dpi = 100)
+ggsave("data_sources/outputs/hvi_map.pdf", hvi_map, width = 10, height = 8)
+ggsave("data_sources/outputs/hvi_map.png", hvi_map, width = 10, height = 8, dpi = 100)
 
-cat("HVI map saved to 'outputs/hvi_map.pdf' and 'outputs/hvi_map.png'\n")
+cat("HVI map saved to 'data_sources/outputs/hvi_map.pdf' and 'data_sources/outputs/hvi_map.png'\n")
 
 # Select top 10 most vulnerable wards
 top_10_vulnerable_wards <- gwpca_data %>%
@@ -301,10 +301,10 @@ top10_map <- ggplot() +
   labs(title = "Top 10 Most Vulnerable Wards in Johannesburg", fill = "HVI")
 
 # Save top 10 map using ggsave
-ggsave("outputs/top_10_vulnerable_wards.pdf", top10_map, width = 10, height = 8)
-ggsave("outputs/top_10_vulnerable_wards.png", top10_map, width = 10, height = 8, dpi = 100)
+ggsave("data_sources/outputs/top_10_vulnerable_wards.pdf", top10_map, width = 10, height = 8)
+ggsave("data_sources/outputs/top_10_vulnerable_wards.png", top10_map, width = 10, height = 8, dpi = 100)
 
-cat("Top 10 vulnerable wards map saved to 'outputs/top_10_vulnerable_wards.pdf' and 'outputs/top_10_vulnerable_wards.png'\n")
+cat("Top 10 vulnerable wards map saved to 'data_sources/outputs/top_10_vulnerable_wards.pdf' and 'data_sources/outputs/top_10_vulnerable_wards.png'\n")
 
 # Spatial autocorrelation analysis
 cat("Performing spatial autocorrelation analysis...\n")
@@ -336,10 +336,10 @@ lisa_map <- ggplot(gwpca_data) +
   labs(title = "Local Moran's I for HVI", fill = "Local I")
 
 # Save Local Moran's I map using ggsave
-ggsave("outputs/local_morans_i.pdf", lisa_map, width = 10, height = 8)
-ggsave("outputs/local_morans_i.png", lisa_map, width = 10, height = 8, dpi = 100)
+ggsave("data_sources/outputs/local_morans_i.pdf", lisa_map, width = 10, height = 8)
+ggsave("data_sources/outputs/local_morans_i.png", lisa_map, width = 10, height = 8, dpi = 100)
 
-cat("Local Moran's I map saved to 'outputs/local_morans_i.pdf' and 'outputs/local_morans_i.png'\n")
+cat("Local Moran's I map saved to 'data_sources/outputs/local_morans_i.pdf' and 'data_sources/outputs/local_morans_i.png'\n")
 
 # Geographically Weighted Principal Component Analysis (GWPCA)
 cat("Performing GWPCA...\n")
@@ -422,10 +422,10 @@ gwpca_hvi_map <- ggplot(gwpca_sf) +
   labs(title = "Heat Vulnerability Index (GWPCA)", fill = "HVI")
 
 # Save GWPCA HVI map using ggsave
-ggsave("outputs/gwpca_hvi.pdf", gwpca_hvi_map, width = 10, height = 8)
-ggsave("outputs/gwpca_hvi.png", gwpca_hvi_map, width = 10, height = 8, dpi = 100)
+ggsave("data_sources/outputs/gwpca_hvi.pdf", gwpca_hvi_map, width = 10, height = 8)
+ggsave("data_sources/outputs/gwpca_hvi.png", gwpca_hvi_map, width = 10, height = 8, dpi = 100)
 
-cat("GWPCA HVI map saved to 'outputs/gwpca_hvi.pdf' and 'outputs/gwpca_hvi.png'\n")
+cat("GWPCA HVI map saved to 'data_sources/outputs/gwpca_hvi.pdf' and 'data_sources/outputs/gwpca_hvi.png'\n")
 
 # Top 10 most vulnerable wards based on GWPCA
 top_10_gwpca <- gwpca_sf %>%
@@ -447,10 +447,10 @@ top10_gwpca_map <- ggplot() +
   labs(title = "Top 10 Most Vulnerable Wards (GWPCA)", fill = "HVI")
 
 # Save top 10 GWPCA map using ggsave
-ggsave("outputs/top_10_gwpca.pdf", top10_gwpca_map, width = 10, height = 8)
-ggsave("outputs/top_10_gwpca.png", top10_gwpca_map, width = 10, height = 8, dpi = 100)
+ggsave("data_sources/outputs/top_10_gwpca.pdf", top10_gwpca_map, width = 10, height = 8)
+ggsave("data_sources/outputs/top_10_gwpca.png", top10_gwpca_map, width = 10, height = 8, dpi = 100)
 
-cat("Top 10 GWPCA vulnerable wards map saved to 'outputs/top_10_gwpca.pdf' and 'outputs/top_10_gwpca.png'\n")
+cat("Top 10 GWPCA vulnerable wards map saved to 'data_sources/outputs/top_10_gwpca.pdf' and 'data_sources/outputs/top_10_gwpca.png'\n")
 
 # Extract loadings array
 cat("Analyzing GWPCA loadings...\n")
@@ -492,13 +492,13 @@ loadings_plot <- ggplot(loadings_df, aes(x = reorder(Variable, PC1_Loading), y =
   labs(title = "Loadings for PC1", x = "Variables", y = "PC1 Loading")
 
 # Save PC1 loadings plot using ggsave
-ggsave("outputs/pc1_loadings.pdf", loadings_plot, width = 8, height = 10)
-ggsave("outputs/pc1_loadings.png", loadings_plot, width = 8, height = 10, dpi = 100)
+ggsave("data_sources/outputs/pc1_loadings.pdf", loadings_plot, width = 8, height = 10)
+ggsave("data_sources/outputs/pc1_loadings.png", loadings_plot, width = 8, height = 10, dpi = 100)
 
-cat("PC1 loadings plot saved to 'outputs/pc1_loadings.pdf' and 'outputs/pc1_loadings.png'\n")
+cat("PC1 loadings plot saved to 'data_sources/outputs/pc1_loadings.pdf' and 'data_sources/outputs/pc1_loadings.png'\n")
 
 # Save the complete workspace for future reference
 cat("Saving workspace...\n")
 save.image("HVI_Johannesburg_complete.RData")
 
-cat("\nAnalysis complete. Results saved to 'outputs' directory.\n")
+cat("\nAnalysis complete. Results saved to 'data_sources/outputs' directory.\n")
