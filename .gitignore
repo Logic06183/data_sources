@@ -1,0 +1,13 @@
+# R specific files
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Large data files (if any)
+*.zip
+*.tar.gz
