@@ -22,7 +22,8 @@ suppressPackageStartupMessages({
 
 # Set working directory
 # IMPORTANT: Change this to your own directory where the data is stored
-setwd("C:/Users/CraigParker/OneDrive - Wits PHR/Desktop/HVI_Johannesburg")
+# Run from the folder containing this script and geometry.shp (was a fixed Windows path; see CORRECTIONS.md)
+# setwd("C:/Users/CraigParker/OneDrive - Wits PHR/Desktop/HVI_Johannesburg")
 
 # Create output directory if it doesn't exist
 if (!dir.exists("data_sources/outputs")) {

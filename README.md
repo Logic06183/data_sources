@@ -1,5 +1,7 @@
 # Heat Vulnerability Index (HVI) Johannesburg - Data Sources
 
+> **September 2026:** the stored HVI columns in `data.csv` are sign-reversed and one row is a ward outside Johannesburg. Use `outputs/hvi_ward_index.csv` and join on `WardID`. Details in [CORRECTIONS.md](CORRECTIONS.md).
+
 This folder contains the primary data sources used in the Heat Vulnerability Index analysis for Johannesburg and scripts to reproduce the analysis.
 
 ## Files
